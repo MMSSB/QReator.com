@@ -2,7 +2,7 @@
  const qrCode = new QRCodeStyling({
     width: 200,
     height: 200,
-    data: "https://example.com",
+    data: "https://mmssb.github.io/QReator.com",
     dotsOptions: {
         color: "#000000",
         type: "square"
