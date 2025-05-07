@@ -2,7 +2,7 @@
  const qrCode = new QRCodeStyling({
     width: 200,
     height: 200,
-    data: "https://mmssb.github.io/QReator.com",
+    data: "https://mmssb.github.io/QReator.com/",
     dotsOptions: {
         color: "#000000",
         type: "square"
@@ -30,10 +30,10 @@ const dotsStyle = document.getElementById('dotsStyle');
 const cornerSquaresStyle = document.getElementById('cornerSquaresStyle');
 const cornerDotsStyle = document.getElementById('cornerDotsStyle');
 const dotsColor = document.getElementById('dotsColor');
-const dotsGradient = document.getElementById('dotsGradient');
-const dotsGradientColors = document.getElementById('dotsGradientColors');
-const dotsGradientColor1 = document.getElementById('dotsGradientColor1');
-const dotsGradientColor2 = document.getElementById('dotsGradientColor2');
+// const dotsGradient = document.getElementById('dotsGradient');
+// const dotsGradientColors = document.getElementById('dotsGradientColors');
+// const dotsGradientColor1 = document.getElementById('dotsGradientColor1');
+// const dotsGradientColor2 = document.getElementById('dotsGradientColor2');
 const bgColor = document.getElementById('bgColor');
 const transparentBg = document.getElementById('transparentBg');
 const size = document.getElementById('size');
@@ -46,10 +46,10 @@ const barcodeElement = document.getElementById('barcode');
 const downloadBtn = document.getElementById('downloadBtn');
 
 // Toggle gradient colors visibility
-dotsGradient.addEventListener('change', function() {
-    dotsGradientColors.style.display = this.checked ? 'block' : 'none';
-    updateCode();
-});
+// dotsGradient.addEventListener('change', function() {
+//     dotsGradientColors.style.display = this.checked ? 'block' : 'none';
+//     updateCode();
+// });
 
 // Handle logo upload
 logoUpload.addEventListener('change', function(e) {
@@ -224,8 +224,8 @@ dotsStyle.addEventListener('change', updateCode);
 cornerSquaresStyle.addEventListener('change', updateCode);
 cornerDotsStyle.addEventListener('change', updateCode);
 dotsColor.addEventListener('input', updateCode);
-dotsGradientColor1.addEventListener('input', updateCode);
-dotsGradientColor2.addEventListener('input', updateCode);
+// dotsGradientColor1.addEventListener('input', updateCode);
+// dotsGradientColor2.addEventListener('input', updateCode);
 bgColor.addEventListener('input', updateCode);
 transparentBg.addEventListener('change', updateCode);
 size.addEventListener('input', updateCode);
@@ -244,7 +244,7 @@ function generateQRData() {
 
     switch(type) {
         case 'qr-url':
-            data = inputs[0].value || 'https://mmssb.github.io/QReator.com';
+            data = inputs[0].value || 'https://mmssb.github.io/QReator.com/';
             break;
         case 'qr-text':
             data = inputs[0].value || 'Sample Text';
@@ -284,20 +284,22 @@ function updateCode() {
     const backgroundColor = transparentBg.checked ? 'transparent' : bgColor.value;
 
     if (type.startsWith('qr-')) {
+        const dotsColorValue = dotsColor.value;
+
         // Update QR Code
-        const dotsColorValue = dotsGradient.checked ? 
-            {
-                type: 'gradient',
-                gradient: {
-                    type: 'linear',
-                    rotation: 0,
-                    colorStops: [
-                        { offset: 0, color: dotsGradientColor1.value },
-                        { offset: 1, color: dotsGradientColor2.value }
-                    ]
-                }
-            } : 
-            dotsColor.value;
+        // const dotsColorValue = dotsGradient.checked ? 
+        //     {
+        //         type: 'gradient',
+        //         gradient: {
+        //             type: 'linear',
+        //             rotation: 0,
+        //             colorStops: [
+        //                 { offset: 0, color: dotsGradientColor1.value },
+        //                 { offset: 1, color: dotsGradientColor2.value }
+        //             ]
+        //         }
+        //     } : 
+        //     dotsColor.value;
 
         qrCode.update({
             width: newSize,
