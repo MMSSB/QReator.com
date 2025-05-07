@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QReator</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+     <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- QR Code and Barcode Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h2 style="color: #1f2937;">Welcome To QReator</h2>
+            <h1 class="title">
+                <i class="fas fa-qrcode icon"></i>Code Generator
+            </h1>
+            <p class="subtitle">Generate customizable QR codes and barcodes for various purposes</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-grid">
+            <!-- Left Column - Controls -->
+            <div class="card">
+                <!-- Code Type Selection -->
+                <div class="form-group">
+                    <label for="codeType" class="label">Code Type</label>
+                    <select id="codeType" class="select">
+                        <optgroup label="QR Codes">
+                            <option value="qr-url">URL QR Code</option>
+                            <option value="qr-text">Text QR Code</option>
+                            <option value="qr-tel">Telephone QR Code</option>
+                            <option value="qr-sms">SMS QR Code</option>
+                            <option value="qr-email">Email QR Code</option>
+                            <option value="qr-wifi">WiFi QR Code</option>
+                            <option value="qr-vcard">vCard QR Code</option>
+                        </optgroup>
+                        <optgroup label="Barcodes">
+                            <option value="code128">Code 128</option>
+                            <option value="ean13">EAN-13</option>
+                            <option value="ean8">EAN-8</option>
+                            <option value="upc">UPC</option>
+                            <option value="code39">Code 39</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Dynamic Input Fields -->
+                <div id="inputFields" class="space-y-4">
+                    <!-- Default URL input -->
+                    <div id="urlInput" class="input-group">
+                        <label class="label" for="urlInputField">Enter URL</label>
+                        <input
+                            id="urlInputField"
+                            type="url"
+                            class="input"
+                            placeholder="https://example.com"
+                        />
+                    </div>
+                </div>
+
+                <!-- QR Code Style Options -->
+                <div id="qrStyleOptions" class="qr-style-options">
+                    <h3 class="section-title">QR Code Style</h3>
+
+                    <!-- Dots Style -->
+                    <div class="form-group">
+                        <label for="dotsStyle" class="label">Dots Style</label>
+                        <select id="dotsStyle" class="select">
+                            <option value="square">Square</option>
+                            <option value="dots">Dots</option>
+                            <option value="rounded">Rounded</option>
+                            <option value="classy">Classy</option>
+                            <option value="classy-rounded">Classy Rounded</option>
+                            <option value="extra-rounded">Extra Rounded</option>
+                        </select>
+                    </div>
+
+                    <!-- Corner Squares Style -->
+                    <div class="form-group">
+                        <label for="cornerSquaresStyle" class="label">Corner Squares Style</label>
+                        <select id="cornerSquaresStyle" class="select">
+                            <option value="square">Square</option>
+                            <option value="dot">Dot</option>
+                            <option value="extra-rounded">Extra Rounded</option>
+                        </select>
+                    </div>
+
+                    <!-- Corner Dots Style -->
+                    <div class="form-group">
+                        <label for="cornerDotsStyle" class="label">Corner Dots Style</label>
+                        <select id="cornerDotsStyle" class="select">
+                            <option value="square">Square</option>
+                            <option value="dot">Dot</option>
+                        </select>
+                    </div>
+
+                    <!-- Logo Image -->
+                    <div class="form-group">
+                        <label for="logoUpload" class="label">Logo Image</label>
+                        <input
+                            type="file"
+                            id="logoUpload"
+                            accept="image/*"
+                            class="input-file"
+                        />
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="removeMargin" class="checkbox" />
+                                <span>Remove logo margin</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Colors -->
+                    <div class="color-grid">
+                        <!-- Dots Color -->
+                        <div>
+                            <label for="dotsColor" class="label">Dots Color</label>
+                            <div class="color-input-group">
+                                <input
+                                    type="color"
+                                    id="dotsColor"
+                                    value="#000000"
+                                    class="color-input"
+                                />
+                                <div class="checkbox-group-inline">
+                                    <input
+                                        type="checkbox"
+                                        id="dotsGradient"
+                                        class="checkbox"
+                                    />
+                                    <label for="dotsGradient" class="checkbox-label-inline"
+                                        >Gradient</label
+                                    >
+                                </div>
+                            </div>
+                            <div id="dotsGradientColors" class="gradient-colors hidden">
+                                <input
+                                    type="color"
+                                    id="dotsGradientColor1"
+                                    value="#000000"
+                                    class="color-input-half"
+                                />
+                                <input
+                                    type="color"
+                                    id="dotsGradientColor2"
+                                    value="#000000"
+                                    class="color-input-half"
+                                />
+                            </div>
+                        </div>
+                        <!-- Background -->
+                        <div>
+                            <label for="bgColor" class="label">Background</label>
+                            <div class="color-input-group">
+                                <input
+                                    type="color"
+                                    id="bgColor"
+                                    value="#FFFFFF"
+                                    class="color-input"
+                                />
+                                <div class="checkbox-group-inline">
+                                    <input
+                                        type="checkbox"
+                                        id="transparentBg"
+                                        class="checkbox"
+                                    />
+                                    <label for="transparentBg" class="checkbox-label-inline"
+                                        >Transparent</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Size -->
+                    <div class="form-group">
+                        <label for="size" class="label">Size</label>
+                        <input
+                            type="range"
+                            id="size"
+                            min="100"
+                            max="400"
+                            value="200"
+                            class="range-input"
+                        />
+                        <div class="size-value">Size: <span id="sizeValue">200</span>px</div>
+                    </div>
+
+                    <!-- Error Correction -->
+                    <div class="form-group">
+                        <label for="errorCorrection" class="label">Error Correction Level</label>
+                        <select id="errorCorrection" class="select">
+                            <option value="L">Low (7%)</option>
+                            <option value="M">Medium (15%)</option>
+                            <option value="Q">Quartile (25%)</option>
+                            <option value="H">High (30%)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Preview -->
+            <div class="card">
+                <h3 class="section-title">Preview</h3>
+                <div class="preview-container">
+                    <div id="qrcode"></div>
+                    <svg id="barcode"></svg>
+                </div>
+                <button id="downloadBtn" class="button">
+                    <i class="fas fa-download icon"></i>Download Code
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>
