@@ -244,7 +244,7 @@ function generateQRData() {
 
     switch(type) {
         case 'qr-url':
-            data = inputs[0].value || 'https://example.com';
+            data = inputs[0].value || 'https://mmssb.github.io/QReator.com';
             break;
         case 'qr-text':
             data = inputs[0].value || 'Sample Text';
